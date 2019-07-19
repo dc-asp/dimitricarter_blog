@@ -8,7 +8,7 @@ namespace dimitricarter_blog.Models
     public class Comment
     {
         public int Id { get; set; }
-        public string BlogPostId { get; set; }
+        public int BlogPostId { get; set; }
         public string AuthorId { get; set; }
         public string Body { get; set; }
         public DateTimeOffset Created { get; set; }

@@ -16,6 +16,11 @@ namespace dimitricarter_blog.Models
 
         //Virtual Nav
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public ApplicationUser()
+        {
+            Comments = new HashSet<Comment>();
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
