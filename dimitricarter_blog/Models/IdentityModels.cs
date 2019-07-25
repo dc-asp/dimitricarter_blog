@@ -19,7 +19,7 @@ namespace dimitricarter_blog.Models
 
         public ApplicationUser()
         {
-            Comments = new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

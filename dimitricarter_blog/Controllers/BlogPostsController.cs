@@ -2,26 +2,64 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using dimitricarter_blog.Helpers;
 using dimitricarter_blog.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace dimitricarter_blog.Controllers
 {
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
 
         // GET: BlogPosts
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchStr)
+
+
         {
-            return View(db.BlogPosts.ToList());
+            ViewBag.Search = searchStr;
+            var bloglist = IndexSearch(searchStr);
+            int pageSize = 3; // display three blog posts at a time on this page
+            int pageNumber = page ?? 1;
+
+            var publishedPosts = db.BlogPosts.Where(b => b.Published).OrderByDescending(b => b.Created);
+            return View(publishedPosts.ToPagedList(pageSize, pageNumber));
         }
 
+        public IQueryable<BlogPost> IndexSearch(string searchStr)
+        {
+            IQueryable<BlogPost> result = null;
+            if (searchStr != null)
+            {
+                result = db.BlogPosts.AsQueryable();
+                result = result.Where(p => p.Title.Contains(searchStr) ||
+                                      p.Comments.Any(c => c.Body.Contains(searchStr) ||
+                                      c.Author.FirstName.Contains(searchStr) ||
+                                      c.Author.LastName.Contains(searchStr) ||
+                                      c.Author.DisplayName.Contains(searchStr) ||
+                                      c.Author.Email.Contains(searchStr))); 
+
+            }
+            else
+            {
+                result = db.BlogPosts.AsQueryable();
+            }
+            return result.OrderByDescending(p => p.Created);
+        }
+        //private object IndexSearch(string searchStr)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         // GET: BlogPosts/Details/5
+
         public ActionResult Details(string Slug)
         {
             if (String.IsNullOrWhiteSpace(Slug))
@@ -37,17 +75,18 @@ namespace dimitricarter_blog.Controllers
         }
 
         // GET: BlogPosts/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
-
+       
         // POST: BlogPosts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Abstract,Slug,Body,MediaUrl,Published,Created,Updated")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Id,Title,Abstract,Slug,Body,MediaUrl,Published,Created,Updated")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +101,12 @@ namespace dimitricarter_blog.Controllers
                     ModelState.AddModelError("Title", "The title must be unique");
                     return View(blogPost);
                 }
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    blogPost.MediaURL = "/Uploads/" + fileName;
+                }
 
                 blogPost.Slug = Slug;
                 blogPost.Created = DateTimeOffset.Now;
@@ -74,6 +119,7 @@ namespace dimitricarter_blog.Controllers
         }
 
         // GET: BlogPosts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,10 +139,16 @@ namespace dimitricarter_blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Abstract,Slug,Body,MediaUrl,Published,Created,Updated")] BlogPost blogPost)
+        public ActionResult Edit([Bind(Include = "Id,Title,Abstract,Slug,Body,MediaUrl,Published,Created,Updated")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    blogPost.MediaURL = "/Uploads/" + fileName;
+                }
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

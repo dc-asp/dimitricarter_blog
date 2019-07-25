@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -168,10 +174,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\awaitTask.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandingPageVM.cs" />
+    <Compile Include="Controllers\MailMessenger.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\pList.cs" />
+    <Compile Include="Controllers\svc.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,126 +195,34 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Models\EmailModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="css\aos.css" />
-    <Content Include="css\bootstrap-datepicker.css" />
-    <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\bootstrap\bootstrap-grid.css" />
-    <Content Include="css\bootstrap\bootstrap-reboot.css" />
-    <Content Include="css\bootstrap\bootstrap.css" />
-    <Content Include="css\bootstrap\bootstrap.min.css" />
-    <Content Include="css\jquery-ui.css" />
-    <Content Include="css\magnific-popup.css" />
-    <Content Include="css\mediaelementplayer.css" />
-    <Content Include="css\owl.carousel.min.css" />
-    <Content Include="css\owl.theme.default.min.css" />
-    <Content Include="css\style.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\flaticon\backup.txt" />
-    <Content Include="fonts\flaticon\font\flaticon.css" />
-    <Content Include="fonts\flaticon\font\flaticon.html" />
-    <Content Include="fonts\flaticon\font\Flaticon.svg" />
-    <Content Include="fonts\flaticon\font\_flaticon.css" />
-    <Content Include="fonts\icomoon\demo-files\demo.css" />
-    <Content Include="fonts\icomoon\demo-files\demo.js" />
-    <Content Include="fonts\icomoon\demo.html" />
-    <Content Include="fonts\icomoon\fonts\icomoon.svg" />
-    <Content Include="fonts\icomoon\Read Me.txt" />
-    <Content Include="fonts\icomoon\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\hero_1.jpg" />
-    <Content Include="images\img_1.jpg" />
-    <Content Include="images\img_2.jpg" />
-    <Content Include="images\img_3.jpg" />
-    <Content Include="images\img_4.jpg" />
-    <Content Include="images\person_1.jpg" />
-    <Content Include="images\person_2.jpg" />
-    <Content Include="images\person_3.jpg" />
-    <Content Include="images\person_4.jpg" />
-    <Content Include="images\person_5.jpg" />
-    <Content Include="img\asset\c1.jpg" />
-    <Content Include="img\asset\c2.jpg" />
-    <Content Include="img\asset\c3.jpg" />
-    <Content Include="img\asset\c4.jpg" />
-    <Content Include="img\asset\c5.jpg" />
-    <Content Include="img\asset\l1.jpg" />
-    <Content Include="img\asset\l2.jpg" />
-    <Content Include="img\asset\l3.jpg" />
-    <Content Include="img\asset\l4.jpg" />
-    <Content Include="img\asset\p1.jpg" />
-    <Content Include="img\asset\p2.jpg" />
-    <Content Include="img\asset\s-img.jpg" />
-    <Content Include="img\asset\slider.jpg" />
-    <Content Include="img\c1.jpg" />
-    <Content Include="img\c2.jpg" />
-    <Content Include="img\c3.jpg" />
-    <Content Include="img\elements\d.jpg" />
-    <Content Include="img\elements\disabled-check.png" />
-    <Content Include="img\elements\disabled-radio.png" />
-    <Content Include="img\elements\f1.jpg" />
-    <Content Include="img\elements\f2.jpg" />
-    <Content Include="img\elements\f3.jpg" />
-    <Content Include="img\elements\f4.jpg" />
-    <Content Include="img\elements\f5.jpg" />
-    <Content Include="img\elements\f6.jpg" />
-    <Content Include="img\elements\f7.jpg" />
-    <Content Include="img\elements\f8.jpg" />
-    <Content Include="img\elements\g1.jpg" />
-    <Content Include="img\elements\g2.jpg" />
-    <Content Include="img\elements\g3.jpg" />
-    <Content Include="img\elements\g4.jpg" />
-    <Content Include="img\elements\g5.jpg" />
-    <Content Include="img\elements\g6.jpg" />
-    <Content Include="img\elements\g7.jpg" />
-    <Content Include="img\elements\g8.jpg" />
-    <Content Include="img\elements\primary-check.png" />
-    <Content Include="img\elements\primary-radio.png" />
-    <Content Include="img\elements\success-check.png" />
-    <Content Include="img\elements\success-radio.png" />
-    <Content Include="img\f1.jpg" />
-    <Content Include="img\f2.jpg" />
-    <Content Include="img\f3.jpg" />
-    <Content Include="img\f4.jpg" />
-    <Content Include="img\header-bg.jpg" />
-    <Content Include="img\i1.jpg" />
-    <Content Include="img\i2.jpg" />
-    <Content Include="img\i3.jpg" />
-    <Content Include="img\i4.jpg" />
-    <Content Include="img\i5.jpg" />
-    <Content Include="img\i6.jpg" />
-    <Content Include="img\i7.jpg" />
-    <Content Include="img\i8.jpg" />
-    <Content Include="img\logo.png" />
-    <Content Include="img\next.jpg" />
-    <Content Include="img\prev.jpg" />
-    <Content Include="img\single.jpg" />
-    <Content Include="img\t1.jpg" />
-    <Content Include="img\t2.jpg" />
-    <Content Include="img\t3.jpg" />
-    <Content Include="img\t4.jpg" />
-    <Content Include="img\team1.jpg" />
-    <Content Include="img\team2.jpg" />
-    <Content Include="img\user.jpg" />
+    <Content Include="js\aos.js" />
+    <Content Include="js\bootstrap-datepicker.min.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-3.3.1.min.js" />
+    <Content Include="js\jquery-migrate-3.0.1.min.js" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery.countdown.min.js" />
+    <Content Include="js\jquery.magnific-popup.min.js" />
+    <Content Include="js\jquery.stellar.min.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\mediaelement-and-player.min.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\popper.min.js" />
+    <Content Include="js\slick.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="img\.DS_Store" />
-    <Content Include="css\.DS_Store" />
-    <Content Include="fonts\flaticon\font\Flaticon.eot" />
-    <Content Include="fonts\flaticon\font\Flaticon.ttf" />
-    <Content Include="fonts\flaticon\font\Flaticon.woff" />
-    <Content Include="fonts\flaticon\font\Flaticon.woff2" />
-    <Content Include="fonts\flaticon\font\_flaticon.scss" />
-    <Content Include="fonts\flaticon\license\license.pdf" />
-    <Content Include="fonts\icomoon\fonts\icomoon.eot" />
-    <Content Include="fonts\icomoon\fonts\icomoon.ttf" />
-    <Content Include="fonts\icomoon\fonts\icomoon.woff" />
-    <Content Include="fonts\icomoon\selection.json" />
+    <Content Include="App_Start\private.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -485,6 +404,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

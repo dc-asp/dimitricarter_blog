@@ -1,11 +1,12 @@
+using dimitricarter_blog.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Migrations;
+using System.Linq;
+
 namespace dimitricarter_blog.Migrations
 {
-    using dimitricarter_blog.Models;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
+    
     internal sealed class Configuration : DbMigrationsConfiguration<dimitricarter_blog.Models.ApplicationDbContext>
     {
         public Configuration()

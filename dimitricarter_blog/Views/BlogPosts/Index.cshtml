@@ -1,13 +1,29 @@
-﻿@model IEnumerable<dimitricarter_blog.Models.BlogPost>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<dimitricarter_blog.Models.BlogPost>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
+
+
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @using(Html.BeginForm("Index","BlogPosts",FormMethod.Get, htmlAttributes:new { @class= "form"}))
+    {
+        <div class="mejs__controls controls-row search-row">
+            <input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="Search" />
+            <button id="searchStr" name="searchStr" class="btn btn-success" type="submit">
+                <i class="icon-search"></i>
+            </button>
+        </div>
+    }
 </p>
 <table class="table">
     <tr>
@@ -17,15 +33,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Abstract)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Slug)
-        </th>
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Body)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.MediaUrl)
-        </th>
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Published)
         </th>
@@ -38,38 +54,47 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abstract)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Slug)
-        </td>
-        <td>
-            @Html.Raw(item.Body) 
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MediaUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Published)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { slug = item.Slug }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Raw(item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abstract)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>*@
+            <td>
+                @Html.Raw(item.Body)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.MediaUrl)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { slug = item.Slug }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<@*p>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr = ViewBag.Search }));
+</p>*@
+@*<p>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</p>*@
+

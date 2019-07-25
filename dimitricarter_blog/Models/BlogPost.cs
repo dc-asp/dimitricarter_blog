@@ -8,6 +8,10 @@ namespace dimitricarter_blog.Models
 {
     public class BlogPost
     {
+        public BlogPost()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Abstract { get; set; }
@@ -23,11 +27,6 @@ namespace dimitricarter_blog.Models
 
         //Virtual Nav Section
         public virtual ICollection<Comment> Comments { get; set; }
-
-        public BlogPost()
-        {
-            Comments = new HashSet<Comment>();
-        }
-
+        public string MediaURL { get; internal set; }
     }
 }
