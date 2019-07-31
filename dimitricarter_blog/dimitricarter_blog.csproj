@@ -198,14 +198,25 @@
     <Compile Include="Views\Models\EmailModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="about.html" />
+    <Content Include="contact.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css\clean-blog.css" />
+    <Content Include="css\clean-blog.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="gulpfile.js" />
+    <Content Include="img\about-bg.jpg" />
+    <Content Include="img\contact-bg.jpg" />
+    <Content Include="img\home-bg.jpg" />
+    <Content Include="img\post-bg.jpg" />
+    <Content Include="img\post-sample-image.jpg" />
+    <Content Include="index.html" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap-datepicker.min.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -220,9 +231,24 @@
     <Content Include="js\owl.carousel.min.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="js\slick.min.js" />
+    <Content Include="mail\contact_me.php" />
+    <Content Include="obj\Debug\dimitricarter_blog.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\dimitricarter_blog.dll" />
+    <Content Include="obj\Debug\dimitricarter_blog.pdb" />
+    <Content Include="post.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Start\private.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\dimitricarter_blog.csproj.CopyComplete" />
+    <Content Include="obj\Debug\dimitricarter_blog.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\dimitricarter_blog.csprojAssemblyReference.cache" />
+    <Content Include=".travis.yml" />
+    <Content Include="LICENSE" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <None Include="Properties\PublishProfiles\dimitricarterblog20190725053224 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -358,6 +384,38 @@
     <Content Include="Scripts\tinymce\themes\silver\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Uploads\superbowl.jpg" />
+    <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="vendor\fontawesome-free\css\all.css" />
+    <Content Include="vendor\fontawesome-free\css\all.min.css" />
+    <Content Include="vendor\fontawesome-free\css\brands.css" />
+    <Content Include="vendor\fontawesome-free\css\brands.min.css" />
+    <Content Include="vendor\fontawesome-free\css\fontawesome.css" />
+    <Content Include="vendor\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="vendor\fontawesome-free\css\regular.css" />
+    <Content Include="vendor\fontawesome-free\css\regular.min.css" />
+    <Content Include="vendor\fontawesome-free\css\solid.css" />
+    <Content Include="vendor\fontawesome-free\css\solid.min.css" />
+    <Content Include="vendor\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="vendor\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="vendor\fontawesome-free\css\v4-shims.css" />
+    <Content Include="vendor\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="vendor\jquery\jquery.js" />
+    <Content Include="vendor\jquery\jquery.min.js" />
+    <Content Include="vendor\jquery\jquery.slim.js" />
+    <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -405,6 +463,40 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
+    <Content Include="scss\clean-blog.scss" />
+    <Content Include="scss\_bootstrap-overrides.scss" />
+    <Content Include="scss\_contact.scss" />
+    <Content Include="scss\_footer.scss" />
+    <Content Include="scss\_global.scss" />
+    <Content Include="scss\_masthead.scss" />
+    <Content Include="scss\_mixins.scss" />
+    <Content Include="scss\_navbar.scss" />
+    <Content Include="scss\_post.scss" />
+    <Content Include="scss\_variables.scss" />
+    <Content Include="vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="vendor\jquery\jquery.min.map" />
+    <Content Include="vendor\jquery\jquery.slim.min.map" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -415,6 +507,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />

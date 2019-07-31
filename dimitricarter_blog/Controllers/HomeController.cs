@@ -15,19 +15,19 @@ namespace dimitricarter_blog.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
-        {
-            var posts = db.BlogPosts.Where(b => b.Published).OrderByDescending(b => b.Created).Take(4).ToList();
+        //public ActionResult Index()
+        //{
+        //    var posts = db.BlogPosts.Where(b => b.Published).OrderByDescending(b => b.Created).Take(4).ToList();
 
-            var myLandingPageVM = new LandingPageVM
-            {
-                LeftPost = posts.FirstOrDefault(),
-                TopRightPost = posts.Skip(1).FirstOrDefault(),
-                BottomLeftPost = posts.Skip(2).FirstOrDefault(),
-                BottomRight = posts.LastOrDefault()
-            };
-            return View(myLandingPageVM);
-        }
+        //    var myLandingPageVM = new LandingPageVM
+        //    {
+        //        LeftPost = posts.FirstOrDefault(),
+        //        TopRightPost = posts.Skip(1).FirstOrDefault(),
+        //        BottomLeftPost = posts.Skip(2).FirstOrDefault(),
+        //        BottomRight = posts.LastOrDefault()
+        //    };
+        //    return View(myLandingPageVM);
+        //}
 
         public ActionResult About()
         {

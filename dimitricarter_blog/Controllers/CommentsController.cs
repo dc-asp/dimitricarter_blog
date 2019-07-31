@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using dimitricarter_blog.Models;
+using Microsoft.AspNet.Identity;
 
 namespace dimitricarter_blog.Controllers
 {
@@ -49,13 +50,17 @@ namespace dimitricarter_blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BlogPostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,BlogPostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment, string commentBody, string mySlug)
         {
             if (ModelState.IsValid)
             {
+                comment.Body = commentBody;
+                comment.AuthorId = User.Identity.GetUserId();
+                comment.Created = DateTimeOffset.Now;
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("Details", "BlogPosts", new { slug = mySlug });
             }
 
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);

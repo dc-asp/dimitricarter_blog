@@ -12,7 +12,7 @@ using dimitricarter_blog.Models;
 
 namespace dimitricarter_blog.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

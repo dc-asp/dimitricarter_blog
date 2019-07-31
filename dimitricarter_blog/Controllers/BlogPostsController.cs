@@ -29,17 +29,18 @@ namespace dimitricarter_blog.Controllers
             int pageSize = 3; // display three blog posts at a time on this page
             int pageNumber = page ?? 1;
 
-            var publishedPosts = db.BlogPosts.Where(b => b.Published).OrderByDescending(b => b.Created);
-            return View(publishedPosts.ToPagedList(pageSize, pageNumber));
+            
+            return View(bloglist.ToPagedList(pageNumber, pageSize));
         }
 
         public IQueryable<BlogPost> IndexSearch(string searchStr)
         {
-            IQueryable<BlogPost> result = null;
+            var result = db.BlogPosts.Where(b => b.Published);
             if (searchStr != null)
             {
-                result = db.BlogPosts.AsQueryable();
                 result = result.Where(p => p.Title.Contains(searchStr) ||
+                                      p.Body.Contains(searchStr) ||
+                                      p.Abstract.Contains(searchStr) ||
                                       p.Comments.Any(c => c.Body.Contains(searchStr) ||
                                       c.Author.FirstName.Contains(searchStr) ||
                                       c.Author.LastName.Contains(searchStr) ||
@@ -47,10 +48,7 @@ namespace dimitricarter_blog.Controllers
                                       c.Author.Email.Contains(searchStr))); 
 
             }
-            else
-            {
-                result = db.BlogPosts.AsQueryable();
-            }
+           
             return result.OrderByDescending(p => p.Created);
         }
         //private object IndexSearch(string searchStr)

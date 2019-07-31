@@ -1,10 +1,12 @@
-﻿namespace dimitricarter_blog.Controllers
+﻿using dimitricarter_blog.Models;
+
+namespace dimitricarter_blog.Controllers
 {
-    internal class LandingPageVM
+    public class LandingPageVM
     {
-        public object LeftPost { get; set; }
-        public object TopRightPost { get; set; }
-        public object BottomLeftPost { get; set; }
-        public object BottomRight { get; set; }
+        public BlogPost LeftPost { get; set; }
+        public BlogPost TopRightPost { get; set; }
+        public BlogPost BottomLeftPost { get; set; }
+        public BlogPost BottomRight { get; set; }
     }
 }
